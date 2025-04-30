@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}Your Profile{% endblock %}
+
+{% block content %}
+<div class="auth-container">
+    <h2 class="text-center mb-4">Your Profile</h2>
+    
+    <div class="card mb-4">
+        <div class="card-body">
+            <h5 class="card-title">Account Information</h5>
+            <p><strong>Username:</strong> {{ user.username }}</p>
+            <p><strong>Email:</strong> {{ user.email }}</p>
+            <p><strong>Date Joined:</strong> {{ user.date_joined|date:"F j, Y" }}</p>
+        </div>
+    </div>
+    
+    <div class="d-grid gap-2">
+        <a href="{% url 'auth_home' %}" class="btn btn-outline-primary">Back to Home</a>
+        <a href="http://localhost:8001/" class="btn btn-primary">Go to Application</a>
+    </div>
+</div>
+{% endblock %}

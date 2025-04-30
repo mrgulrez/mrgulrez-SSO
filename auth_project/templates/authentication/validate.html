@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block title %}Authentication Success{% endblock %}
+
+{% block extra_css %}
+<style>
+    .redirect-container {
+        text-align: center;
+    }
+    
+    .countdown {
+        font-size: 2rem;
+        font-weight: bold;
+        color: var(--primary);
+        margin: 1rem 0;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="auth-container">
+    <div class="redirect-container">
+        <h2 class="mb-3">Authentication Successful</h2>
+        <div class="alert alert-success">
+            <p>You have been successfully authenticated.</p>
+        </div>
+        
+        <p>You will be redirected to the application in</p>
+        <div class="countdown" id="countdown">3</div>
+        
+        <div class="spinner" id="spinner"></div>
+        
+        <p>If you are not redirected automatically, <a href="{{ redirect_url }}" id="manual-link">click here</a>.</p>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        let count = 3;
+        const countdownEl = document.getElementById('countdown');
+        const redirectUrl = "{{ redirect_url }}";
+        
+        const interval = setInterval(function() {
+            count--;
+            countdownEl.textContent = count;
+            
+            if (count <= 0) {
+                clearInterval(interval);
+                window.location.href = redirectUrl;
+            }
+        }, 1000);
+        
+        // Add the manual link
+        document.getElementById('manual-link').href = redirectUrl;
+    });
+</script>
+{% endblock %}

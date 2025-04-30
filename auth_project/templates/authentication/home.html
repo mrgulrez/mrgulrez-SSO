@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block title %}Auth System Home{% endblock %}
+
+{% block content %}
+<div class="text-center">
+    <h1 class="display-4 mb-4">Welcome to the Authentication System</h1>
+    <p class="lead mb-5">This is the central authentication system for our applications.</p>
+    
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <div class="card-body text-center">
+                    <h3 class="card-title">Authentication Services</h3>
+                    <p class="card-text">This system provides authentication for all connected applications.</p>
+                    {% if user.is_authenticated %}
+                        <a href="{% url 'profile' %}" class="btn btn-primary">View Your Profile</a>
+                    {% else %}
+                        <a href="{% url 'login' %}" class="btn btn-primary">Login</a>
+                        <a href="{% url 'register' %}" class="btn btn-outline-primary ms-2">Register</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body text-center">
+                    <h3 class="card-title">Application Portal</h3>
+                    <p class="card-text">Once authenticated, you can access the connected applications.</p>
+                    <a href="http://localhost:8001/" class="btn btn-primary">Go to Application</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

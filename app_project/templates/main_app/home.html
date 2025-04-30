@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block title %}App Home{% endblock %}
+
+{% block content %}
+<div class="text-center">
+    <h1 class="display-4 mb-4">Welcome to the Main Application</h1>
+    <p class="lead mb-5">This application requires authentication to access its features.</p>
+    
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <div class="card-body text-center">
+                    <h3 class="card-title">Main Features</h3>
+                    <p class="card-text">Explore the dashboard and manage your tasks.</p>
+                    {% if request.user.is_authenticated %}
+                        <a href="{% url 'dashboard' %}" class="btn btn-primary">Go to Dashboard</a>
+                    {% else %}
+                        <a href="http://localhost:8000/auth/login/?next=http://localhost:8001/dashboard/" class="btn btn-primary">Login to Access</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body text-center">
+                    <h3 class="card-title">Your Account</h3>
+                    <p class="card-text">
+                        {% if request.user.is_authenticated %}
+                            You are logged in as <strong>{{ request.user.username }}</strong>
+                        {% else %}
+                            You are not logged in. Please login to access the application.
+                        {% endif %}
+                    </p>
+                    {% if request.user.is_authenticated %}
+                        <a href="{% url 'protected_view' %}" class="btn btn-primary">Protected Content</a>
+                    {% else %}
+                        <a href="http://localhost:8000/auth/login/" class="btn btn-primary">Login</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

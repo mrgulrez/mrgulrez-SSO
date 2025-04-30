@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block title %}Protected Content{% endblock %}
+
+{% block content %}
+<div class="main-container">
+    <h1 class="mb-4">Protected Content</h1>
+    
+    <div class="alert alert-success">
+        <h4 class="alert-heading">Authentication Success!</h4>
+        <p>This page is only visible to authenticated users. You are logged in as <strong>{{ request.user.username }}</strong>.</p>
+    </div>
+    
+    <div class="card mb-4">
+        <div class="card-body">
+            <h2 class="card-title">How Authentication Works</h2>
+            <p>This application is protected by a centralized authentication system. Here's how it works:</p>
+            
+            <ol>
+                <li>When you try to access a protected page, the system checks if you're authenticated.</li>
+                <li>If not authenticated, you're redirected to the authentication service.</li>
+                <li>After successful login, the auth service redirects you back with a secure token.</li>
+                <li>This token is validated and stored in your session.</li>
+                <li>Now you can access all protected resources until your session expires.</li>
+            </ol>
+        </div>
+    </div>
+    
+    <div class="text-center">
+        <a href="{% url 'dashboard' %}" class="btn btn-primary">Back to Dashboard</a>
+        <a href="{% url 'home' %}" class="btn btn-outline-primary ms-2">Home</a>
+    </div>
+</div>
+{% endblock %}

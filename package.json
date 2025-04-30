@@ -1,0 +1,13 @@
+{
+  "name": "django-auth-projects",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "python manage.py runserver",
+    "migrate": "python manage.py migrate",
+    "makemigrations": "python manage.py makemigrations"
+  },
+  "dependencies": {
+    "django": "^4.2.0"
+  }
+}
