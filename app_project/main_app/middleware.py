@@ -26,6 +26,7 @@ class AuthenticationMiddleware(MiddlewareMixin):
         if token:
             validated = self.validate_token(token)
             if validated:
+                request.session.flush()
                 request.session['auth_token'] = token
                 request.session['user_data'] = {
                     'user_id': validated['user_id'],
